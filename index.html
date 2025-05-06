@@ -5,8 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SmartStart Tech Camp 2025</title>
-  <link rel="stylesheet" href="css/reset.css">  
+  <!-- Подключаем сброс стилей -->
+  <link rel="stylesheet" href="css/reset.css">
+  <!-- Подключаем Google Font Poppins -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- Основные стили -->
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -24,7 +27,7 @@
         <li><a href="#about">О мероприятии</a></li>
         <li><a href="#schedule">Программа</a></li>
         <li><a href="#speakers">Спикеры</a></li>
-        <!-- кнопка регистрации убрана -->
+        <li><a href="#register" class="btn btn--secondary">Регистрация</a></li>
       </ul>
     </nav>
   </header>
@@ -46,21 +49,58 @@
     <section id="schedule" class="schedule container">
       <h2>Программа</h2>
       <div class="schedule__grid">
-        <!-- …карточки программы… -->
+        <div class="schedule__item">
+          <time>10:00</time>
+          <p>Регистрация и приветственный кофе</p>
+        </div>
+        <div class="schedule__item">
+          <time>11:00</time>
+          <p>HTML & CSS: основы верстки</p>
+        </div>
+        <div class="schedule__item">
+          <time>13:00</time>
+          <p>Обед и свободное общение</p>
+        </div>
+        <div class="schedule__item">
+          <time>14:00</time>
+          <p>Flexbox, Grid и адаптивность</p>
+        </div>
       </div>
     </section>
 
     <section id="speakers" class="speakers container">
       <h2>Спикеры</h2>
       <div class="speakers__grid">
-        <!-- …карточки спикеров… -->
+        <div class="speaker">
+          <img src="img/speakers/alex.png" alt="Алексей Иванов">
+          <h3>Алексей Иванов</h3>
+          <p>Frontend-разработчик Google</p>
+        </div>
+        <div class="speaker">
+          <img src="img/speakers/olga.png" alt="Ольга Смирнова">
+          <h3>Ольга Смирнова</h3>
+          <p>UX/UI-дизайнер Apple</p>
+        </div>
+        <div class="speaker">
+          <img src="img/speakers/andrei.jpg" alt="Андрей Варкин">
+          <h3>Андрей Варкин</h3>
+          <p>CEO Microsoft</p>
+        </div>
       </div>
     </section>
 
     <section id="register" class="register container">
       <h2>Регистрация</h2>
       <form class="form">
-        <!-- …поля формы… -->
+        <div class="form__group">
+          <label for="name">Имя</label>
+          <input type="text" id="name" name="name" required placeholder="Ваше имя">
+        </div>
+        <div class="form__group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="example@mail.com">
+        </div>
+        <button type="submit" class="btn btn--primary">Отправить</button>
       </form>
     </section>
   </main>

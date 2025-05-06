@@ -113,9 +113,6 @@ body {
   padding: 6rem 1rem;
   text-align: center;
 }
-.hero__content {
-  /* внутри .container — белый фон, поэтому текст остаётся чётким */
-}
 .hero__title {
   font-size: 3rem;
   font-weight: 800;
