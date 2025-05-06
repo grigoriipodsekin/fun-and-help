@@ -1,109 +1,153 @@
-/* css/style.css */
+/* ============================= */
+/*       Переменные CSS         */
+/* ============================= */
 
-/* ============================= */
-/*        Переменные CSS         */
-/* ============================= */
 :root {
-  --clr-primary: #006cff;           /* базовый синий */
-  --clr-secondary: #ff3366;         /* акцентный розово-красный */
-  --clr-bg1: #1a2a6c;               /* градиент: тёмно-синий */
-  --clr-bg2: #b21f1f;               /* градиент: бордовый */
-  --clr-bg3: #fdbb2d;               /* градиент: жёлтый */
-  --ff-base: 'Poppins', sans-serif; /* шрифт Poppins */
-  --transition: 0.25s ease-in-out;  /* плавность переходов */
-  --radius: 0.75rem;                /* скругление */
+  /* Основные цвета */
+  --clr-primary:   #d3345c;   /* основной акцентный цвет */
+  --clr-secondary: #550b1d;   /* вторичный цвет для интерактивных элементов */
+  /* Цвета для градиентного фона */
+  --bg1:           #1a2a6c;   /* стартовый цвет градиента */
+  --bg2:           #b21f1f;   /* средний цвет градиента */
+  --bg3:           #fdbb2d;   /* конечный цвет градиента */
+  /* Шрифтовые и общие параметры */
+  --ff-base:       'Poppins', sans-serif; /* основной шрифт */
+  --transition:    .25s ease-in-out;      /* универсальная скорость переходов */
+  --radius:        .75rem;                /* стандартный радиус скругления */
 }
 
 /* ============================= */
-/*      Анимированный фон        */
+/*  Анимация плавного градиента  */
 /* ============================= */
 @keyframes gradientBG {
-  0%   { background-position: 0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-body {
-  margin: 0;                        
-  font-family: var(--ff-base);
-  color: #fff;                      /* белый текст в hero и для фона */
-  background: linear-gradient(-45deg, var(--clr-bg1), var(--clr-bg2), var(--clr-bg3));
-  background-size: 400% 400%;       
-  animation: gradientBG 15s ease infinite;
-  line-height: 1.6;
+  0%   { background-position: 0% 50%; }   /* начало: градиент слева */
+  50%  { background-position: 100% 50%; } /* середина: градиент справа */
+  100% { background-position: 0% 50%; }   /* конец: возвращение в начало */
 }
 
 /* ============================= */
-/*        Контейнер-обёртка       */
+/*            BODY              */
+/* ============================= */
+body {
+  margin: 0;                                  /* сброс отступов браузера */
+  font-family: var(--ff-base);                /* установка основного шрифта */
+  line-height: 1.6;                           /* межстрочный интервал */
+  color: #fff;                                /* цвет текста */
+  /* фоновый градиент + анимация */
+  background: linear-gradient(-45deg, var(--bg1), var(--bg2), var(--bg3));
+  background-size: 400% 400%;                 /* увеличение для плавности движения */
+  animation: gradientBG 15s infinite ease;     /* бесконечная анимация */
+}
+
+/* ============================= */
+/*        Контейнер-обёртка      */
 /* ============================= */
 .container {
-  max-width: 1200px;                
-  margin: 0 auto;                   
-  padding: 0 1rem;                  
-  /*background: #fff;                 /* заменили полупрозрачный “серый” на чистый белый */
-  border-radius: var(--radius);     
+  max-width: 1200px;    /* ограничение ширины контента */
+  margin: 1rem auto;    /* центрирование и отступы сверху/снизу */
+  padding: 0 1rem;      /* боковые отступы */
 }
 
 /* ============================= */
-/*           ХЕДЕР/НАВИГАЦИЯ      */
+/*        СТИЛИ HEADER/NAV       */
 /* ============================= */
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
+  position: sticky;      /* "прилипающая" шапка */
+  top: 0;                /* закрепить к верхней границе */
+  width: 100%;           /* растягиваем на всю ширину */
+  z-index: 100;          /* над остальным контентом */
+  backdrop-filter: blur(5px); /* размывает фон под шапкой */
 }
+
 .nav {
-  display: flex;
-  align-items: center;              
-  justify-content: space-between;   
-  padding: 1rem 0;
+  display: flex;         /* флекс-контейнер */
+  align-items: center;   /* выравнивание по вертикали */
+  justify-content: space-between; /* логотип слева, меню справа */
+  position: relative;    /* для позиционирования бургера */
+  padding: 1rem;         /* внутренние отступы */
 }
+
 .nav__logo {
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--clr-secondary);
-  text-decoration: none;
+  font-size: 2rem;       /* размер логотипа */
+  font-weight: 800;      /* жирный шрифт */
+  color: var(--clr-secondary); /* цвет логотипа */
+  text-decoration: none; /* без подчёркивания */
+  margin-right: 3rem;    /* отступ после логотипа */
 }
+
+/* скрытый чекбокс для управления мобильным меню */
 .nav__checkbox {
   display: none;
 }
+
+/* кнопка бургера */
 .nav__button {
-  display: none;
+  display: none;         /* по-умолчанию скрыта */
+  position: absolute;    /* позиционирование относительно nav */
+  top: 50%;              /* по вертикали */
+  right: 1rem;           /* от правого края */
+  transform: translateY(-50%); /* точное выравнивание */
+  background: none;
+  border: none;
+  padding: .5rem;        /* площадь клика */
   cursor: pointer;
+  z-index: 200;          /* над меню */
 }
-.nav__icon {
-  width: 2rem;
-  height: 2px;
+
+/* полоски бургера */
+.nav__icon,
+.nav__icon::before,
+.nav__icon::after {
+  display: block;
+  width: 1.8rem;         /* длина полоски */
+  height: 2px;           /* толщина */
   background: var(--clr-secondary);
   position: relative;
   transition: var(--transition);
 }
-.nav__icon::before,
-.nav__icon::after {
-  content: '';
-  width: 2rem;
-  height: 2px;
-  background: var(--clr-secondary);
-  position: absolute;
-  transition: var(--transition);
-}
-.nav__icon::before { top: -0.6rem; }
-.nav__icon::after  { top: 0.6rem;  }
+.nav__icon::before { content: ''; top: -0.6rem; position: absolute; }
+.nav__icon::after  { content: ''; top:  0.6rem; position: absolute; }
 
+/* ============================= */
+/*      СТИЛИ ССЫЛОК NAV        */
+/* ============================= */
 .nav__list {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
+  list-style: none;      /* убрать маркеры */
+  display: flex;         /* пункты в ряд */
+  gap: 2rem;             /* расстояние между пунктами */
+  margin: 0;
+  padding: 0;
 }
 .nav__list a {
-  font-weight: 600;
-  text-decoration: none;
-  color: #333;                      /* чёрный для чёткости на белом фоне */
+  font-weight: 600;      /* полужирный текст */
+  color: #fff;           /* белый цвет ссылок */
+  text-decoration: none; /* без подчёркивания */
   transition: var(--transition);
 }
 .nav__list a:hover {
-  color: var(--clr-secondary);
+  color: var(--clr-primary); /* изменение цвета при наведении */
+}
+
+/* ============================= */
+/*            BUTTONS            */
+/* ============================= */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.btn--primary {
+  background: var(--clr-primary);
+  color: #fff;
+  border: 2px solid transparent;
+}
+.btn--primary:hover {
+  background: transparent;
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);
 }
 
 /* ============================= */
@@ -118,40 +162,38 @@ body {
   font-weight: 800;
   margin-bottom: 1rem;
   text-transform: uppercase;
-  color: #fff;                      /* белый на градиенте */
 }
 .hero__subtitle {
   font-size: 1.25rem;
   margin-bottom: 2rem;
-  color: #eee;                      /* чуть светлее для контраста */
 }
 
 /* ============================= */
-/*           Программа           */
+/*         ПРОГРАММА (GRID)      */
 /* ============================= */
 .schedule__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
 .schedule__item {
-  background: #fff;                 /* белый фон карточки */
-  color: #333;                      /* чёрный текст */
+  background: #fff;
+  color: #333;
   padding: 1.5rem;
   border-radius: var(--radius);
-  transition: transform 0.3s ease;
+  transition: transform .3s ease;
 }
 .schedule__item:hover {
   transform: translateY(-5px);
 }
 
 /* ============================= */
-/*          Спикеры              */
+/*         СПИКЕРЫ (GRID)        */
 /* ============================= */
 .speakers__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
   text-align: center;
@@ -161,19 +203,19 @@ body {
   color: #333;
   padding: 1.5rem;
   border-radius: var(--radius);
-  transition: transform 0.3s ease;
+  transition: transform .3s ease;
 }
 .speaker:hover {
   transform: scale(1.03);
 }
 .speaker img {
   width: 100%;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
+  border-radius: 50%;   /* круглые изображения */
+  margin-bottom: 1rem; 
+} 
 
 /* ============================= */
-/*        Форма регистрации      */
+/*     ФОРМА РЕГИСТРАЦИИ         */
 /* ============================= */
 .form {
   margin: 2rem 0;
@@ -203,28 +245,33 @@ body {
   border-color: red;
 }
 
-/* ============================= */
-/*         Адаптивность           */
-/* ============================= */
-@media (max-width: 992px) {
-  .hero__title { font-size: 2.5rem; }
-  .hero__subtitle { font-size: 1.125rem; }
+/* отступ под секцию "О мероприятии" */
+#about {
+  margin-bottom: 2rem;
 }
+
+/* ============================= */
+/*        MOBILE MENU (<768px)    */
+/* ============================= */
 @media (max-width: 768px) {
-  .nav__button { display: block; }
+  .nav__button {
+    display: block;      /* показываем кнопку-бургер на мобилках */
+  }
   .nav__list {
-    position: absolute;
-    top: 100%;
-    left: 0; right: 0;
-    background: #fff;              /* белый фон для выпадающего меню */
+    display: none;       /* скрываем меню по-умолчанию */
+  }
+  /* при активном чекбоксе показываем меню */
+  .nav__checkbox:checked ~ .nav__list {
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 2rem 0;
-    transform: translateY(-200%);
-    transition: transform var(--transition);
-  }
-  .nav__checkbox:checked ~ .nav__list {
-    transform: translateY(0);
+    gap: 1.5rem;
+    background: var(--clr-secondary);    /* фон выпадающего меню */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 1rem 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
 }
