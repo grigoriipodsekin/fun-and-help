@@ -40,7 +40,7 @@ body {
   max-width: 1200px;                
   margin: 0 auto;                   
   padding: 0 1rem;                  
-  background: #fff;                 /* заменили полупрозрачный “серый” на чистый белый */
+  /*background: #fff;                 /* заменили полупрозрачный “серый” на чистый белый */
   border-radius: var(--radius);     
 }
 
